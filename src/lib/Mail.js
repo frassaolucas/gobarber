@@ -29,10 +29,11 @@ class Mail {
           partialsDir: resolve(viewPath, 'partials'),
           defaultLayout: 'default',
           extname: '.hbs',
-      }),
-      viewPath,
-      extName: '.hbs',
-    }))
+        }),
+        viewPath,
+        extName: '.hbs',
+      })
+    );
   }
 
   sendMail(message) {

@@ -13,13 +13,13 @@ class UserController {
         .min(6),
     });
 
-    if(!(await schema.isValid(req.body))) {
+    if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Failed to validate' });
     }
 
     const userExists = await User.findOne({ where: { email: req.body.email } });
 
-    if(userExists) {
+    if (userExists) {
       return res.status(400).json({ error: 'User already exists.' });
     }
 
@@ -45,10 +45,10 @@ class UserController {
         ),
       confirmPassword: Yup.string().when('password', (password, field) =>
         password ? field.required().oneOf([Yup.ref('password')]) : field
-      )
+      ),
     });
 
-    if(!(schema.isValid(req.body))) {
+    if (!schema.isValid(req.body)) {
       return res.status(400).json({ error: 'Failed to validate' });
     }
 
@@ -56,15 +56,15 @@ class UserController {
 
     const user = await User.findByPk(req.userId);
 
-    if(email && email !== user.email) {
+    if (email && email !== user.email) {
       const userExists = await User.findOne({ where: { email } });
 
-      if(userExists) {
+      if (userExists) {
         return res.status(400).json({ error: 'User already exists.' });
       }
     }
 
-    if(oldPassword && !(await user.checkPassword(oldPassword))) {
+    if (oldPassword && !(await user.checkPassword(oldPassword))) {
       return res.status(401).json({ error: 'Password does not match' });
     }
 

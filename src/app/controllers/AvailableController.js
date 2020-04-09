@@ -7,8 +7,8 @@ import {
   format,
   isAfter,
 } from 'date-fns';
-import Appointment from '../models/Appointment';
 import { Op } from 'sequelize';
+import Appointment from '../models/Appointment';
 
 class AvailableController {
   async index(req, res) {
@@ -26,7 +26,7 @@ class AvailableController {
         canceled_at: null,
         date: {
           [Op.between]: [startOfDay(searchDate), endOfDay(searchDate)],
-        }
+        },
       },
     });
 
