@@ -17,6 +17,6 @@ const Routes: React.FC = () => {
       <Route path="/dashboard" component={Dashboard} isPrivate />
     </Switch>
   );
-}
+};
 
 export default Routes;
