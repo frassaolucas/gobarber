@@ -5,8 +5,7 @@ import IAppointmentsRepository from '@modules/appointments/repositories/ IAppoin
 import Appointment from '../entities/Appointment';
 
 @EntityRepository(Appointment)
-class AppointmentsRepository extends Repository<Appointment>
-  implements IAppointmentsRepository {
+class AppointmentsRepository implements IAppointmentsRepository {
   public async findByDate(date: Date): Promise<Appointment | undefined> {
     const findAppointment = await this.findOne({
       where: { date },
